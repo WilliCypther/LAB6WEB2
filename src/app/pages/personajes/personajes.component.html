@@ -1,0 +1,66 @@
+<p>personajes works!</p>
+{{ results }}
+
+<!--<table>
+    <tr *ngFor="let pers of results.results">
+
+        <td>{{pers.id}}</td>
+        <td>{{pers.name}}</td>
+        <td><img class="foto" [src]="pers.image" alt="" />        
+        </td>
+    </tr>
+</table>-->
+
+<div class="cards-container">
+  <div
+    *ngFor="let pers of results.results; let isLast = last"
+    class="DatainfoContainer"
+    [ngClass]="{ 'small-card': isLast }"
+  >
+    <!-- Contenido a la derecha de la imagen -->
+    <div class="info-container">
+      <div class="image-container">
+        <img [src]="pers.image" alt="{{ pers.name }}" class="square-image" />
+      </div>
+
+      <div class="info-content">
+        <mat-card-title class="mat-h2"> Name: {{ pers.name }}</mat-card-title>
+
+        <mat-card-content>
+          <Br />
+          <mat-card-subtitle class="mat-h2">{{
+            pers.species
+          }}</mat-card-subtitle>
+          <p class="info-paragraph mat-h2">Id: {{ pers.id }}</p>
+          <p class="info-paragraph mat-h2">Gender: {{ pers.gender }}</p>
+
+          <div class="ICONOS">
+            <p class="info-paragraph mat-h2">Status: {{ pers.status }}</p>
+            <mat-icon *ngIf="pers.status === 'Alive'" class="alive-icon"
+              >check_circle</mat-icon
+            >
+            <mat-icon *ngIf="pers.status === 'Dead'" class="dead-icon"
+              >cancel</mat-icon
+            >
+            <mat-icon *ngIf="pers.status === 'unknown'" class="unknown-icon"
+              >help</mat-icon
+            >
+            <mat-icon
+              *ngIf="pers.status === 'Not available'"
+              class="not-available-icon"
+              >block</mat-icon
+            >
+
+          </div>
+
+
+          <mat-card-content>
+            <!-- ...otros elementos... -->
+            <p class="info-paragraph mat-h4.5">Created:{{ pers.created | date: 'medium' }}</p>
+          </mat-card-content>
+
+        </mat-card-content>
+      </div>
+    </div>
+  </div>
+</div>
